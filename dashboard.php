@@ -24,10 +24,22 @@ include 'login/login_functions/database.php';
     <div class="col-6">
         <select id="inputState" class="form-select" name = "city">
             <option value=" "           >Choose Your City ?</option>
-            <option value="cairo" >Cairo</option>
-            <option value="alex" >Alex</option>
-            <option value="aswan" >Aswan</option>
-            <option value="asyut" >Asyut</option>
+            <option value="cairo"    >Cairo</option>
+            <option value="alex"     >Alex</option>
+            <option value="aswan"    >Aswan</option>
+            <option value="asyut"    >Asyut</option>
+            <option value="mansoura" >Mansoura</option>
+            <option value="luxor"    >Luxor</option>
+            <option value="sohag"    >Sohag</option>
+            <option value="giza"     >Giza</option>
+            <option value="faiyum"   >Faiyum</option>
+            <option value="port said">Port Said</option>
+            <option value="damietta" >Damietta</option>
+            <option value="sharqia"  >Sharqia</option>
+            <option value="monufya"  >Monufya</option>
+            <option value="suez"     >Suez</option>
+            <option value="charbia"  >Charbia</option>
+            <option value="dakahlia" >Dakahlia</option>
         </select>
 
     </div>
