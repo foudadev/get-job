@@ -27,6 +27,7 @@ include 'login/login_functions/database.php';
             <option value="cairo" >Cairo</option>
             <option value="alex" >Alex</option>
             <option value="aswan" >Aswan</option>
+            <option value="asyut" >Asyut</option>
         </select>
 
     </div>
