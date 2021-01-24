@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/header.html';
 // include 'login/login_functions/database.php';
  include 'includes/navbar.html';
@@ -21,14 +22,34 @@ echo "Connected successfully";
 ?>
 <html>
 
-   <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="includes/posts.css" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  < <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
     <!------ Include the above in your HEAD tag ---------->
     <?php
-    /*
-$sql = "SELECT c_name,c_details FROM dashboard";
+    $user_email = $_SESSION['email'];
+    echo $user_email;
+$query = "SELECT city,job FROM profile WHERE email='$user_email'";
+$result2 = mysqli_query($conn, $query);
+
+
+if ($result2->num_rows > 0) {
+    // output data of each row
+    while ($row = $result2->fetch_assoc()) {
+        //echo "id: " . $row["city"] . " - Name: " . $row["job"] . "<br>";
+        $_SESSION['user_job'] = $row["job"];
+        $_SESSION['user_city'] = $row["city"] ;
+        //echo $_SESSION['user_city'];
+    }
+}else {
+    echo "0 results";
+}
+
+
+   $user_city = $_SESSION['user_city'];
+
+$sql = "SELECT c_name,c_details FROM dashboard WHERE city='$user_city'";
 $result = mysqli_query($conn, $sql);
 if ($result->num_rows > 0) {
     // output data of each row
@@ -95,7 +116,6 @@ if ($result->num_rows > 0) {
         </div>
     </div>
         <?php }}
-    */
 
 
     ?>
