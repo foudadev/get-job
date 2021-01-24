@@ -1,7 +1,7 @@
 <?php
+session_start();
 include "login_functions/database.php";
 //include 'functions/login.php';
-
 
 if(isset($_POST['signup'])){
     $name = $_POST['name'];
@@ -9,6 +9,10 @@ if(isset($_POST['signup'])){
     $pass = password_hash($_POST['pass'],PASSWORD_DEFAULT);
      if(filter_var($email,FILTER_VALIDATE_EMAIL) && filter_var($name, FILTER_SANITIZE_STRING)) {
          db_connect(  "INSERT INTO login (name,email,password) VALUES ('$name', '$email', '$pass')");
+         $_SESSION["logged_in"] = true;
+         $_SESSION['email'] = $email;
+         header( "refresh:2;url=../profile.php" );
+         //echo $_SESSION['email'];
      }else{
          echo "Check Your Information ";
      }
@@ -39,7 +43,7 @@ if(isset($_POST['signup'])){
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        <form action="login.php" method="POST" class="register-form" id="register-form">
+                        <form action="signup.php" method="POST" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name"/>
