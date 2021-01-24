@@ -1,4 +1,23 @@
 <?php
+session_start();
+
+$db = mysqli_connect('localhost', 'user', 'Password123#@!', 'jobs');
+
+if (isset($_POST['login'])) {
+    $email = $_POST['your_email'];
+    $sql_u = "SELECT * FROM login WHERE email='$email'";
+    $res_u = mysqli_query($db, $sql_u);
+    if (mysqli_num_rows($res_u) > 0) {
+        $_SESSION["logged_in"] = true;
+        $_SESSION["email"] = $email;
+        header( "refresh:2;url=../index.php" );
+       // include '../profile.php';
+    }else{
+        echo "incorrect info";
+    }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +47,10 @@
 
                 <div class="signin-form">
                     <h2 class="form-title">Sign up</h2>
-                    <form action ="/index.php" method="POST" class="register-form" id="login-form">
+                    <form action ="login.php" method="POST" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                            <input type="email" name="your_email" id="your_name" placeholder="Your Email"/>
                         </div>
                         <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
@@ -42,7 +61,7 @@
                             <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="Login"/>
+                            <input type="submit" name="login" id="signin" class="form-submit" value="login"/>
                         </div>
                     </form>
                     <div class="social-login">
@@ -66,3 +85,4 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
